@@ -1,0 +1,38 @@
+<% layout('layouts/boiler') %>
+
+<% if (campgrounds.length) { %>
+    <h1 class="fs-2 mb-4">
+        Search Results for "<%= searchTerm %>"
+    </h1>
+<% } else { %>
+    <h2 class="fs-2 mb-4"> 
+        No results for "<%= searchTerm %>"
+    </h2>
+    <p>
+        Please try searching again. You can use terms from the campground title or location in your query.
+    </p>
+<% } %>
+
+<% for (let campground of campgrounds){%>
+    <div class="card mb-3">
+        <div class="row">
+            <div class="col-md-4 d-flex">
+                
+        <img class="img-fluid" src="<%= campground.images.length > 0 ? campground.images[0].url : "https://res-console.cloudinary.com/djpxbg2eh/thumbnails/v1/image/upload/v1635848693/WWVscENhbXAvdXFwcjR3ZG12YndvN2FuZW9hdjA=/preview" %>" alt="">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"> <%= campground.title%></h5>
+                    <p class="card-text"> <%= campground.description%></p>
+                    <p class="card-text">
+                        <small class="text-muted"><%=campground.location%></small>
+                    </p>
+                    
+                    <a class="btn btn-primary" href="/campgrounds/<%=campground._id%>">View <%= campground.title%></a>
+                </div>
+            </div>
+        </div>
+        
+           </div>
+    <% }%>
+</div>
